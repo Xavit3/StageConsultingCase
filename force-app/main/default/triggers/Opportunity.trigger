@@ -11,7 +11,27 @@ trigger Opportunity on Opportunity (after update, before update) {
           Opportunity.Stagename != 'Closed Won'){
            Opportunity.addError ('A fase CLOSED WON não pode ser alterada.');
        } 
-       }
-    }  
+      }
+    }
+        else if (Opportunity.StageName.equals('Negotiation/Review')) {
+            Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();{
+            mail.setToAddresses(Opportunity.StageName); //procurrar erro
+            mail.setSubject('Envio de Proposta');
+            mail.setPlainTextBody('hola, estou enviando a proposta adjunta');
+          }
+            Attachment[] attachments = [SELECT Id, Name, Body FROM Attachment WHERE ParentId = :Opportunity.Id AND Name = 'proposta'];
+            if (attachments.size() > 0) {
+                mail.setFileAttachments(new Messaging.EmailFileAttachment[]{new Messaging.EmailFileAttachment(
+                    fileName = attachments[0].Name,
+                    body = attachments[0].Body
+                )});
+            }
+            emails.add(mail);
+        }
+    }
+    if (!emails.isEmpty()) {
+        Messaging.sendEmail(emails);
+      }
   }
-} 
+
+  
