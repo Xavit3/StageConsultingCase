@@ -20,16 +20,15 @@ trigger Opportunity on Opportunity (before insert, before update, after update) 
            Opp2.addError ('A fase CLOSED WON não pode ser alterada.');
           } 
           else if ((trigger.oldMap.get(Opp2.Id).StageName == 'Value Proposition' &&
-          Opp2.Stagename != 'Value Proposition') && Opp2.StageName !='Closed Lost' &&
-          (Opp2.TempoProjeto__c == null || Opp2.ValorProposta__c == null || Opp2.Amount == null) &&
+          Opp2.Stagename != 'Value Proposition') && Opp2.StageName !='Closed Lost'  &&
             Opp2.envioProposta__c == false){
-               Opp2.addError ('Para mudar a fase precisa anexar arquivo de proposta ou preencher os campos. ');
+               Opp2.addError ('Para mudar a fase precisa anexar arquivo de proposta ');
           }
           
                else if ((trigger.oldMap.get(Opp2.Id).StageName == 'Negotiation/Review' &&
           Opp2.Stagename != 'Negotiation/Review') && Opp2.StageName != 'Closed Lost' &&
           (Opp2.TempoProjeto__c == null || Opp2.ValorProposta__c == null || Opp2.Amount == null ||
-            Opp2.envioProposta__c == false)){
+          Opp2.envioDocForm__c == false || Opp2.envioProposta__c == false)){
                Opp2.addError('Para mudar a fase, é necessário preencher todos os campos obrigatórios e enviar a proposta.');
 }
           /*
