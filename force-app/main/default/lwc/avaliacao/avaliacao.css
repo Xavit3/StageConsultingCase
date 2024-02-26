@@ -1,0 +1,32 @@
+.stars-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; 
+}
+
+.star {
+    width: 50px; 
+    margin: 0 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out; 
+}
+.star:hover {
+    transform: scale(2.0); 
+}
+
+.suggestion-box {
+    text-align: center;
+}
+
+.suggestion-box textarea {
+    width: 100%; 
+    margin-top: 10px; 
+    padding: 5px; 
+    resize: vertical; 
+}
+
+.suggestion-box button {
+    cursor: pointer;
+    padding: 10px 20px; 
+    font-size: 16px; 
+}

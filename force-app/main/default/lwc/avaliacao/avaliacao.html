@@ -1,0 +1,12 @@
+<template>
+    <div class="stars-container">
+        <template for:each={stars} for:item="star">
+            <img key={star.id} src={star.url} alt="Estrela" class="star" />
+        </template>
+    </div>
+    <div class="suggestion-box">
+        <textarea rows="3" cols="30" placeholder="Digite sua sugestão..." 
+                  oninput={handleSuggestionChange}></textarea>
+        <button onclick={submitFeedback}>Enviar</button>
+    </div>
+</template>
