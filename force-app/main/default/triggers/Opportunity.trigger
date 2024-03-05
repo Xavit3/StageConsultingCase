@@ -54,7 +54,7 @@ trigger Opportunity on Opportunity (before insert, before update, after update) 
          // Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
           //attachment.setFileName('proposta'); 
          // attachment.setBody(attachments[0].Body);
-          //email.setFileAttachments(new Messaging.EmailFileAttachment[] { attachment });
+         // email.setFileAttachments(new Messaging.EmailFileAttachment[] { attachment });
 
             enviarEmail.add(email);
       }
